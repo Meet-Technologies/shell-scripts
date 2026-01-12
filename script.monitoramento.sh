@@ -735,6 +735,7 @@ echo ""
 echo "CONFIGURE O NOME $HOSTNAME NO DISPOSITIVO CADASTRADO NO GLPI   "
 echo
 
+systemctl restart zabbix-agent
 
 }
 
