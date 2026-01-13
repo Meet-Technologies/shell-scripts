@@ -759,7 +759,7 @@ openvpn_file_conf() {
 
   read -p "DIGITE O NOME DO ARQUIVO CLIENT SEM A EXTENSAO .CONF: " VPNCLIENT
   echo
-  touch /etc/openvpn/client/$VPNCLIENT.conf
+  touch /etc/openvpn/$VPNCLIENT.conf
   echo "INSERIR OS DADOS DO CERTIFICADO AGORA?"
   echo
 
@@ -771,17 +771,18 @@ openvpn_file_conf() {
 
     cat > "$VPNCLIENT.conf"
     echo
-    echo "ARQUIVO CRIADO COM SUCESSO EM /etc/openvpn/client/ com o nome $VPNCLIENT.conf"
+    echo "ARQUIVO CRIADO COM SUCESSO EM /etc/openvpn/ com o nome $VPNCLIENT.conf"
     echo
     echo "DESEJA INICIAR A CONEXAO VPN COM ESTE NOVO CERTIFICADO CRIADO ?"
   if perguntar_sim_nao; then
      systemctl start openvpn-client@$VPNCLIENT
+     systemctl start openvpn@$VPNCLIENT
   else
-    echo "O ARQUIVO FOI CRIADO E PODERA SER EDITADO POSTERIORMENTE, ESTA NO CAMINHO /etc/openvpn/cliente/$VPNCLIENT.conf"
+    echo "O ARQUIVO FOI CRIADO E PODERA SER EDITADO POSTERIORMENTE, ESTA NO CAMINHO /etc/openvpn/$VPNCLIENT.conf"
 
     fi
  else
-    echo "O ARQUIVO FOI CRIADO E PODERA SER EDITADO POSTERIORMENTE, ESTA NO CAMINHO /etc/openvpn/client/$VPNCLIENT.conf"
+    echo "O ARQUIVO FOI CRIADO E PODERA SER EDITADO POSTERIORMENTE, ESTA NO CAMINHO /etc/openvpn/$VPNCLIENT.conf"
   fi
 }
 
